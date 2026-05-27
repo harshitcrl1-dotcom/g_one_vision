@@ -28,11 +28,21 @@ add_executable(g1_lidar_sim src/g1_lidar_sim.cpp)
 ament_target_dependencies(g1_lidar_sim
   rclcpp sensor_msgs tf2_ros tf2 geometry_msgs)
 
+add_executable(g1_avoidance src/g1_avoidance.cpp)
+ament_target_dependencies(g1_avoidance
+  rclcpp std_msgs unitree_hg)
+
+add_executable(g1_depth_camera src/g1_depth_camera.cpp)
+ament_target_dependencies(g1_depth_camera
+  rclcpp sensor_msgs tf2_ros tf2 geometry_msgs)
+
 install(TARGETS
   g1_joint_state_bridge
   g1_scene_publisher
   g1_obstacle_detector
   g1_lidar_sim
+  g1_depth_camera
+  g1_avoidance
   DESTINATION lib/\${PROJECT_NAME})
 
 ament_package()
