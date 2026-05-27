@@ -22,8 +22,17 @@ ament_target_dependencies(g1_scene_publisher
 
 add_executable(g1_obstacle_detector src/g1_obstacle_detector.cpp)
 ament_target_dependencies(g1_obstacle_detector
-  rclcpp tf2_ros tf2 geometry_msgs visualization_msgs std_msgs)
+  rclcpp sensor_msgs tf2_ros tf2 geometry_msgs visualization_msgs std_msgs)
 
-install(TARGETS g1_joint_state_bridge g1_scene_publisher g1_obstacle_detector
-  DESTINATION lib/${PROJECT_NAME})
+add_executable(g1_lidar_sim src/g1_lidar_sim.cpp)
+ament_target_dependencies(g1_lidar_sim
+  rclcpp sensor_msgs tf2_ros tf2 geometry_msgs)
+
+install(TARGETS
+  g1_joint_state_bridge
+  g1_scene_publisher
+  g1_obstacle_detector
+  g1_lidar_sim
+  DESTINATION lib/\${PROJECT_NAME})
+
 ament_package()
